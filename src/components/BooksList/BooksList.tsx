@@ -3,12 +3,20 @@ import { IBook } from "types/types";
 import BooksItem from "./BookItem";
 
 interface BooksListProps {
-  books: IBook[];
+  filteredByCategory: () => IBook[];
+  filteredByPrice: () => IBook[];
 }
 
-const BooksList: FC<BooksListProps> = ({ books }) => {
-  const elements = books.map(({ id, name, price }) => (
-    <BooksItem key={id} id={id} name={name} price={price} />
+const BooksList: FC<BooksListProps> = ({
+  filteredByCategory,
+  filteredByPrice,
+}) => {
+  const books = filteredByPrice();
+
+  console.log(books);
+
+  const elements = books.map((book, index) => (
+    <BooksItem key={book.id} book={book} index={index} />
   ));
 
   return <ul className='mb-6'>{elements}</ul>;

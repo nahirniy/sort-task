@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "name": "Animals",
+    "price": 245,
+    "category": "animals"
+  },
+  {
+    "id": 2,
+    "name": "Paris and clothes",
+    "price": 345,
+    "category": "tourizm"
+  },
+  {
+    "id": 3,
+    "name": "Chanel",
+    "price": 180,
+    "category": "parfum"
+  },
+  {
+    "id": 4,
+    "name": "Creed",
+    "price": 125,
+    "category": "music"
+  },
+  {
+    "id": 5,
+    "name": "Food",
+    "price": 145,
+    "category": "food"
+  },
+  {
+    "id": 6,
+    "name": "Italy and tourizm",
+    "price": 156,
+    "category": "tourizm"
+  },
+  {
+    "id": 7,
+    "name": "Jazz club",
+    "price": 197,
+    "category": "music"
+  }
+]

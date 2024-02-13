@@ -16,19 +16,24 @@ const App = () => {
   const updateTotalPrice = (price: number) =>
     setTotalPrice((prevPrice) => prevPrice + price);
 
-  const filteredByPrice = (): IBook[] => {
+  const filterByPrice = (): IBook[] => {
     return books.sort((a, b) =>
       filter === Price.PRICE_UP ? b.price - a.price : a.price - b.price
     );
+  };
+
+  const filterByCategory = (): IBook[] => {
+    return books.filter(({ category: genre }) => filter.includes(genre));
   };
 
   const filteredBooks = (): IBook[] => {
     if (filter === FILTER_DEFAULT) return books;
 
     if (filter === Price.PRICE_UP || filter === Price.PRICE_DOWN) {
-      return filteredByPrice();
+      return filterByPrice();
     }
-    return books.filter(({ category: genre }) => filter.includes(genre));
+
+    return filterByCategory();
   };
 
   return (

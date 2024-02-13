@@ -1,6 +1,7 @@
 import { ChangeEvent, FC, useState } from "react";
 import { FaArrowAltCircleDown, FaArrowAltCircleUp } from "react-icons/fa";
 import { Price } from "types/types";
+import books from "../../data/books.json";
 
 interface FilterProps {
   updateFilter: (filter: string) => void;
@@ -30,6 +31,12 @@ const Filter: FC<FilterProps> = ({ updateFilter, filter }) => {
     updateFilter(Price.PRICE_UP);
   };
 
+  const elements = books.map(({ category, id }) => (
+    <option key={id} value={category}>
+      {category}
+    </option>
+  ));
+
   return (
     <div className='p-2 mb-6 w-full flex justify-between items-center shadow-md rounded-md bg-white'>
       <p
@@ -43,11 +50,7 @@ const Filter: FC<FilterProps> = ({ updateFilter, filter }) => {
         className='p-2 rounded-md cursor-pointer'
         onChange={(e) => sortByCategory(e)}>
         <option value='default'>all books</option>
-        <option value='animals'>animals</option>
-        <option value='tourizm'>tourizm</option>
-        <option value='parfum'>parfum</option>
-        <option value='music'>music</option>
-        <option value='food'>food</option>
+        {elements}
       </select>
     </div>
   );

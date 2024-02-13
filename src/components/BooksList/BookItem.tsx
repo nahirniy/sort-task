@@ -3,18 +3,18 @@ import { IBook } from "types/types";
 
 interface BookProps {
   book: IBook;
-  index: number;
+  updateTotalPrice: (newTotalPrice: number) => void;
 }
 
-const BooksItem: FC<BookProps> = ({ book, index }) => {
+const BooksItem: FC<BookProps> = ({ book, updateTotalPrice }) => {
   const { id, name, price } = book;
 
   return (
     <li
-      className='p-2 flex justify-between border border-solid border-black'
-      data-id={id}>
+      className='p-2 flex justify-between border border-solid border-black cursor-pointer'
+      onClick={() => updateTotalPrice(price)}>
       <p>
-        <span className='mr-1'>{index + 1}</span>
+        <span className='mr-1'>{id}</span>
         <span>{name}</span>
       </p>
       <p>{price}$</p>

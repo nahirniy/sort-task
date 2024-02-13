@@ -1,24 +1,34 @@
-import { ChangeEvent, FC } from "react";
+import { ChangeEvent, FC, useState } from "react";
 import { FaArrowAltCircleDown, FaArrowAltCircleUp } from "react-icons/fa";
+import { Price } from "types/types";
 
 interface FilterProps {
-  updateCategory: (category: string) => void;
-  updatePriceUp: (priceUp: boolean) => void;
-  priceUp: boolean;
+  updateFilter: (filter: string) => void;
+  filter: string;
 }
 
-const Filter: FC<FilterProps> = ({
-  updateCategory,
-  updatePriceUp,
-  priceUp,
-}) => {
-  const sortByCategory = (e: ChangeEvent<HTMLSelectElement>) => {
+const Filter: FC<FilterProps> = ({ updateFilter, filter }) => {
+  const [price, setPrice] = useState(Price.PRICE_UP);
+
+  const priceUp = price === Price.PRICE_UP;
+
+  const sortByCategory = (e: ChangeEvent<HTMLSelectElement>): void => {
     const currentFilter = e.target.value;
 
-    updateCategory(currentFilter);
+    updateFilter(currentFilter);
   };
 
-  const sortByPrice = () => updatePriceUp(!priceUp);
+  const sortByPrice = (): void => {
+    if (price === Price.PRICE_UP) {
+      setPrice(Price.PRICE_DOWN);
+      updateFilter(Price.PRICE_DOWN);
+
+      return;
+    }
+
+    setPrice(Price.PRICE_UP);
+    updateFilter(Price.PRICE_UP);
+  };
 
   return (
     <div className='p-2 mb-6 w-full flex justify-between items-center shadow-md rounded-md bg-white'>
@@ -29,7 +39,9 @@ const Filter: FC<FilterProps> = ({
         {priceUp ? <FaArrowAltCircleUp /> : <FaArrowAltCircleDown />}
       </p>
 
-      <select className='p-2 rounded-md' onChange={(e) => sortByCategory(e)}>
+      <select
+        className='p-2 rounded-md cursor-pointer'
+        onChange={(e) => sortByCategory(e)}>
         <option value='default'>all books</option>
         <option value='animals'>animals</option>
         <option value='tourizm'>tourizm</option>

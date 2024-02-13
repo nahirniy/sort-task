@@ -4,3 +4,8 @@ export interface IBook {
   price: number;
   category?: string;
 }
+
+export enum Price {
+  PRICE_UP = "price-up",
+  PRICE_DOWN = "price-down",
+}

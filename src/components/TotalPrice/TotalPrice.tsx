@@ -1,8 +1,14 @@
-const TotalPrice = () => {
+import { FC } from "react";
+
+interface TotalPriceProps {
+  totalPrice: number;
+}
+
+const TotalPrice: FC<TotalPriceProps> = ({ totalPrice }) => {
   return (
     <div className='flex flex-col gap-2'>
       <p className='font-bold'>Total Count:</p>
-      <p>0$</p>
+      <p>{totalPrice}$</p>
     </div>
   );
 };

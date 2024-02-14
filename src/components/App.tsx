@@ -6,7 +6,7 @@ import Wrapper from "./Wrapper/Wrapper";
 import books from "data/books.json";
 import { IBook, Price } from "types/types";
 
-const FILTER_DEFAULT = "default";
+export const FILTER_DEFAULT: string = "default";
 
 const App = () => {
   const [filter, setFilter] = useState(FILTER_DEFAULT);
@@ -38,12 +38,12 @@ const App = () => {
 
   return (
     <Wrapper>
-      <Filter updateFilter={updateFilter} filter={filter} />
+      <Filter updateFilter={updateFilter} books={books} />
       <BooksList
         filteredBooks={filteredBooks}
         updateTotalPrice={updateTotalPrice}
       />
-      <TotalPrice totalPrice={totalPrice} />
+      <TotalPrice totalPrice={totalPrice} updateTotalPrice={updateTotalPrice} />
     </Wrapper>
   );
 };

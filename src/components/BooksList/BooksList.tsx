@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { IBook } from "types/types";
-import BooksItem from "./BookItem";
+import BooksItem from "./BooksItem/BookItem";
 
 interface BooksListProps {
   filteredBooks: () => IBook[];
